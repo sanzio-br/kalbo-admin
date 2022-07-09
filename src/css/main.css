@@ -1,0 +1,19 @@
+:root{
+    --red:#932b2e;
+	--grey:#424242;
+	--gray:#333333;
+}
+a{
+    text-decoration: none;
+}
+.bookbtn{
+    display: flex;
+    border: none;
+    background: var(--red);
+    color: #ffff;
+    padding:7px 15px;
+    border-radius: 2em;
+    margin-top: .5em ;
+    width: fit-content;
+    align-self: flex-end;
+  }
