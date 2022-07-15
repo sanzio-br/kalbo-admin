@@ -5,7 +5,7 @@ export default function Breadcrumbs() {
                 <div className="container">
                     <h2 className="breadcrumbs-custom-title">Tours</h2>
                     <ul className="breadcrumbs-custom-path">
-                        <li><a href="/kalbo-main-app">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li className="active">Tours</li>
                     </ul>
                 </div>

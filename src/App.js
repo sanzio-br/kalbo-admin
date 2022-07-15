@@ -19,13 +19,13 @@ function App() {
       <Navbar isAuth={isAuth} setIsAuth={setIsAuth}/>
       <Router>
       <Routes>
-        <Route exact path='/admin' element={<Home isAuth={isAuth}/>}/>
-        <Route exact path='/admin/login' element={<Signing setIsAuth={setIsAuth}/>}/>
-        <Route exact path='/admin/blogs' element={<BlogPage/>}/>
-        <Route exact path='/admin/safari-packages' element={<Events/>}/>
-        <Route exact path='/admin/post-package' element={<PostPackage isAuth={isAuth}/>}/>
-        <Route exact path='/admin/post-blog' element={<PostBlog isAuth={isAuth}/>}/>
-        <Route exact path='/admin/safari-packages/:id' element={<BookingInfo/>}/>
+        <Route exact path='/' element={<Home isAuth={isAuth}/>}/>
+        <Route exact path='/login' element={<Signing setIsAuth={setIsAuth}/>}/>
+        <Route exact path='/blogs' element={<BlogPage/>}/>
+        <Route exact path='/safari-packages' element={<Events/>}/>
+        <Route exact path='/post-package' element={<PostPackage isAuth={isAuth}/>}/>
+        <Route exact path='/post-blog' element={<PostBlog isAuth={isAuth}/>}/>
+        <Route exact path='/safari-packages/:id' element={<BookingInfo/>}/>
       </Routes>
     </Router>
     </div>

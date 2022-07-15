@@ -19,21 +19,13 @@ const Signing = ({ setIsAuth }) => {
   const login = async (event) => {
     event.preventDefault();
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        userCredential.email,
-        userCredential.passWord
-      );
       localStorage.setItem("isAuth", true);
       setIsAuth(true);
-      navigate("/admin");
-      console.log(user);
+      navigate("/");
     } catch (error) {
       setLogError(error)
-      console.log(error.message);
     }
   };
-  console.log(userCredential);
   return (
     <div id="main-wrapper" className="container mt-2">
       <div className="row justify-content-center">
