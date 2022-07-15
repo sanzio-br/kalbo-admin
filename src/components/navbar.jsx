@@ -18,8 +18,8 @@ const Navbar= ({isAuth, setIsAuth}) => {
           <a href="tel:+254720126177">+254720126177</a>
         </div>
         <div className="right">
-              <a href="/admin">FAQ</a> <span>|</span> 
-              <a href="/admin/booking">Booking</a>
+              <a href="/">FAQ</a> <span>|</span> 
+              <a href="/booking">Booking</a>
           </div>
       </div>
       <nav className="navbar navbar-expand-lg container sticky-top mt-0">
@@ -50,13 +50,13 @@ const Navbar= ({isAuth, setIsAuth}) => {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/admin"
+                  href="/"
                 >
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/admin/blogs">
+                <a className="nav-link" href="/blogs">
                   Blogs
                 </a>
               </li>
@@ -64,7 +64,7 @@ const Navbar= ({isAuth, setIsAuth}) => {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/admin/safari-packages"
+                  href="/safari-packages"
                 >
                   Packages
                 </a>
@@ -76,7 +76,7 @@ const Navbar= ({isAuth, setIsAuth}) => {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/admin/post-package"
+                  href="/post-package"
                 >
                   post package
                 </a>
@@ -85,7 +85,7 @@ const Navbar= ({isAuth, setIsAuth}) => {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/admin/post-blog"
+                  href="/post-blog"
                 >
                   post blog
                 </a>
@@ -96,7 +96,7 @@ const Navbar= ({isAuth, setIsAuth}) => {
                 onClick={logout}
                   className="nav-link active"
                   aria-current="page"
-                  href="/admin/login"
+                  href="/login"
                 >
                   Sign out
                 </a>
@@ -108,7 +108,7 @@ const Navbar= ({isAuth, setIsAuth}) => {
                 <a
                   className="nav-link active"
                   aria-current="page"
-                  href="/admin/login"
+                  href="/login"
                 >
                   Sign in
                 </a>
