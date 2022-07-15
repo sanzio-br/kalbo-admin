@@ -54,7 +54,7 @@ export default function Events() {
                     <div className="pw_meta">
                       <span>
                         <AiOutlineCalendar className="card-icon" />
-                        {packageData ? `${packageData.startDate} to ${packageData.endDate}`: ""}
+                        {packageData ? `${packageData.startDate} to ${packageData.endDate}`: "N/A"}
                       </span>
                       <span>
                         <WiDaySunny className="card-icon" />

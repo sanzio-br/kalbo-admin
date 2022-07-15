@@ -1,7 +1,13 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { deletePost } from "../../redux/features/blogsfeatures";
+import { useDispatch } from "react-redux";
+import { deletePost , Close } from "../../redux/features/blogsfeatures";
 export const Delete = (props) => {
+  const dispatch = useDispatch();
+  const modalDelete = () => {
+    dispatch(Close());
+    dispatch(deletePost(props.id));
+  };
   return (
     <Modal
       {...props}
@@ -20,9 +26,7 @@ export const Delete = (props) => {
           Close
         </Button>
         <Button
-          onClick={() => {
-            deletePost(props.id);
-          }}
+          onClick={modalDelete}
         >
           Delete
         </Button>
