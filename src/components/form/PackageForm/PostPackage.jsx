@@ -89,7 +89,7 @@ const PostPackage = ({ isAuth }) => {
                 packageType:packageType,
                 url: downloadURL,
               });
-              navigate("/admin/safari-packages");
+              navigate("/safari-packages");
             }
             postevent();
           });

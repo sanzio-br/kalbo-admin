@@ -17,3 +17,9 @@ a{
     width: fit-content;
     align-self: flex-end;
   }
+  .delete-btn{
+    font-size: 2em;
+    border: none;
+    color: var(--red);
+    background-color: none;
+  }

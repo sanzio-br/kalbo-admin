@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { db, auth, storage } from "../../../firebase-config";
+import { db, storage } from "../../../firebase-config";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { ProgressBar, Alert } from "react-bootstrap";
@@ -15,7 +15,7 @@ const PostBlog = ({ isAuth }) => {
   let navigate = useNavigate();
   useEffect(() => {
     if (!isAuth) {
-      navigate("/admin/login");
+      navigate("/login");
     }
   });
   const handleChange = (event) => {
@@ -52,7 +52,7 @@ const PostBlog = ({ isAuth }) => {
                 blog,
                 url: downloadURL,
               });
-              navigate("/admin/blogs");
+              navigate("/blogs");
             }
             postevent();
           });

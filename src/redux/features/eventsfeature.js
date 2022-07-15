@@ -1,11 +1,12 @@
 import {createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 // import axios from 'axios'
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection ,deleteDoc, doc} from "firebase/firestore";
 import { db } from "../../firebase-config";
 const initialState = {
     loading: false,
     events:[],
-    errorMessage:null
+    errorMessage:null,
+    modalShow:false
 }
 
 export const getEvents = createAsyncThunk('events/getEvents',async ()=>{
@@ -17,6 +18,14 @@ export const getEvents = createAsyncThunk('events/getEvents',async ()=>{
 const eventListSlice = createSlice({
     name: 'events',
     initialState: initialState,
+    reducers:{
+        Close: (state , action)=>{
+            state.modalShow = false;
+        },
+        Open: (state , action)=>{
+            state.modalShow = true;
+        },
+    },
     extraReducers:(builder)=>{
         builder.addCase(getEvents.pending, (state,action)=>{
             state.loading = true;
@@ -29,4 +38,10 @@ const eventListSlice = createSlice({
         })
     }
 })
+export const {Open, Close} = eventListSlice.actions;
+export const deletePackage = async (id) => {
+    Close();
+    const postDoc = doc(db, "events", id);
+    await deleteDoc(postDoc);
+  };
 export default eventListSlice.reducer;

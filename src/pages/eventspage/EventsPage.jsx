@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getEvents } from "../../redux/features/eventsfeature";
+import { getEvents, Open, Close } from "../../redux/features/eventsfeature";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { WiDaySunny } from "react-icons/wi";
 import { BsPeopleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Button from "../../components/button";
+import { AiOutlineDelete } from "react-icons/ai";
+import { Delete } from "./delete";
 export default function Events() {
   const dispatch = useDispatch();
   const eventsListState = useSelector((store) => {
@@ -14,8 +16,13 @@ export default function Events() {
   useEffect(() => {
     dispatch(getEvents());
   }, [dispatch]);
-  const { events} = eventsListState;
-  console.log(events);
+  const { events, modalShow} = eventsListState;
+  const modalOpen = () => {
+    dispatch(Open());
+  };
+  const modalClose = () => {
+    dispatch(Close());
+  };
   return (
     <section style={{ textAlign: "center" }} className="container mt-0">
       <h3
@@ -59,6 +66,20 @@ export default function Events() {
                         <Button id={id} />
                       </Link>
                     </div>
+                  </div>
+                  <div className="delete">
+                    <button
+                      className="delete-btn"
+                      onClick={modalOpen}
+                    >
+                      <AiOutlineDelete />
+                    </button>
+                    <Delete
+                      show={modalShow}
+                      onHide={modalClose}
+                      id={id}
+                      title={title}
+                    />
                   </div>
                 </div>
               </div>
