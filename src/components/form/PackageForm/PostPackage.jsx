@@ -33,15 +33,16 @@ const PostPackage = ({ isAuth }) => {
   ]);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [packageType, setPackageType] = useState("")
   const [packageData, setPackageData] = useState({
+    currency:"",
     destination: "",
     description: "",
     price: "",
     startDate: "",
     endDate: "",
     location: "",
-    people: null,
+    maxPeople:null,
+    minPeople:null,
     days: null,
   });
   const handleChange = (event) => {
@@ -49,12 +50,6 @@ const PostPackage = ({ isAuth }) => {
     const value = event.target.value;
     setPackageData({ ...packageData, [event.target.name]: value });
   };
-  const handleSelected = (event) => {
-    event.preventDefault();
-    const value = event.target.value;
-    setPackageType(value);
-  };
-  console.log(packageType)
   const addlist = async (event) => {
     event.preventDefault();
     try {
@@ -86,7 +81,6 @@ const PostPackage = ({ isAuth }) => {
                 itinerary: itinerary,
                 inclusives: inclusives,
                 exclusives: exclusives,
-                packageType:packageType,
                 url: downloadURL,
               });
               navigate("/safari-packages");
@@ -103,7 +97,20 @@ const PostPackage = ({ isAuth }) => {
   return (
     <div className="container form">
       <form action="" onSubmit={addlist}>
-        <FormTop handleChange={handleChange} />
+      <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
+          <div className="form-group m-2">
+            <label className="form-label">Type of package</label>
+            <select id="" name="packageType" className="form-select" required onChange={handleChange}>
+              <option>Select package type</option>
+              <option value="Domestic packages" >Domestic packages</option>
+              <option value="International package" >International package</option>
+              <option value="Beach packages" >Beach packages</option>
+              <option value="Safari Packages">Safari Packages</option>
+              <option value="honey moon packages">honey moon packages</option>
+            </select>
+          </div>
+        </div>
+        <FormTop handleChange={handleChange}/>
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
           <div className="col-lg-6 wow ">
             <div className="form-group m-2">
@@ -170,17 +177,6 @@ const PostPackage = ({ isAuth }) => {
                 AddIcon={AddIcon}
               />
             </div>
-          </div>
-        </div>
-        <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
-          <div className="form-group m-2">
-            <label className="form-label">Type of package</label>
-            <select id="" name="packageType" className="form-select" required onChange={handleSelected}>
-              <option>Open this select menu</option>
-              <option value="beach safari" onChange={handleSelected}>beach safari</option>
-              <option value="normal safari" onChange={handleSelected}>normal safari</option>
-              <option value="top safari" onChange={handleSelected}>top safari</option>
-            </select>
           </div>
         </div>
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">

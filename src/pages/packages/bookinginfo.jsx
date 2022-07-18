@@ -9,7 +9,7 @@ import Photos from "./photos";
 import Itinerary from "./Itinerary";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { WiDaySunny } from "react-icons/wi";
-import { BsPeopleFill } from "react-icons/bs";
+import { BsPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import Faq from "./Faq";
 export default function BookingInfo(props) {
   const [postContent, setPostContent] = useState({});
@@ -54,21 +54,34 @@ export default function BookingInfo(props) {
                 <h4>{title}</h4>
                 <span className="id number">{id}</span>
                 <div className="days-details">
-                  <span>
-                    <AiOutlineCalendar className="card-icon" />
-                    {packageData ? `${packageData.startDate} to ${packageData.endDate}`: ""}
-                  </span>
+                  {packageData ? packageData.startDate && packageData.endDate ? (
+                    <>
+                      <span>
+                        <AiOutlineCalendar className="card-icon" />
+                        {packageData
+                          ? `${packageData.startDate} to ${packageData.endDate}`
+                          : ""}
+                      </span>
+                    </>
+                  ) : (
+                    ""
+                  ):""}
                   <span>
                     <WiDaySunny className="card-icon" />
                     {packageData ? packageData.days : ""}
+                  </span>
+                  <span>
+                    <BsFillPersonFill className="card-icon" />
+                    {packageData ? packageData.minPeople : ""}
                     <BsPeopleFill className="card-icon" />
-                    {packageData ? packageData.people : ""}
+                    {packageData ? packageData.maxPeople : ""}
                   </span>
                 </div>
                 <div className="details">
                   <span>Description</span>
                   <p>{packageData ? packageData.description : ""}</p>
                   <BookButton
+                    currency={packageData ? packageData.currency : ""}
                     title={title}
                     price={packageData ? packageData.price : ""}
                     destination={packageData ? packageData.destination : ""}

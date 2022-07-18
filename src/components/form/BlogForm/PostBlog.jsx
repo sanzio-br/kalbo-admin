@@ -63,7 +63,7 @@ const PostBlog = ({ isAuth }) => {
     }
   };
   return (
-    <div>
+    <div className="container">
       <h5 className="text-center">Post A blog</h5>
       <div className="form">
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">

@@ -5,26 +5,23 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 const Signing = ({ setIsAuth }) => {
-  const [logerror, setLogError] = useState("") 
+  const [logerror, setLogError] = useState("");
   let navigate = useNavigate();
-  const [userCredential, setUserCredential] = useState({
-    email: "",
-    passWord: "",
-  });
-  const handleChange = (event) => {
-    event.preventDefault();
-    const value = event.target.value;
-    setUserCredential({ ...userCredential, [event.target.name]: value });
-  };
-  const login = async (event) => {
-    event.preventDefault();
-    try {
-      localStorage.setItem("isAuth", true);
-      setIsAuth(true);
-      navigate("/");
-    } catch (error) {
-      setLogError(error)
-    }
+  const [passWord, setPassWord] = useState("");
+  const [email, setEmail] = useState("");
+  const login = () => {
+    signInWithEmailAndPassword(auth, email, passWord)
+      .then((userCredential) => {
+        // Signed in
+        alert("login successfull")
+        localStorage.setItem("isAuth", true);
+        setIsAuth(true);
+        navigate("/");
+        // ...
+      })
+      .catch((error) => {
+        setLogError(error)
+      });
   };
   return (
     <div id="main-wrapper" className="container mt-2">
@@ -45,38 +42,42 @@ const Signing = ({ setIsAuth }) => {
                       panel.
                     </p>
 
-                    <form>
+                    <div>
                       <div className="form-group">
-                        {logerror && <Alert key="danger" variant="danger">
-                          Incorect email or password please chech and try again
-                        </Alert>}
+                        {logerror && (
+                          <Alert key="danger" variant="danger">
+                            Incorect email or password please chech and try
+                            again
+                          </Alert>
+                        )}
                       </div>
                       <div className="form-group">
                         <label className="form-label">Email address</label>
                         <input
+                          required
                           name="email"
                           type="email"
                           className="form-control"
-                          onChange={handleChange}
+                          onChange={(event) => setEmail(event.target.value)}
                         />
                       </div>
                       <div className="form-group mb-5">
                         <label className="form-label">Password</label>
                         <input
+                          required
                           name="passWord"
                           type="password"
                           className="form-control"
-                          onChange={handleChange}
+                          onChange={(event) => setPassWord(event.target.value)}
                         />
                       </div>
                       <button
-                        type="submit"
                         className="btn btn-theme"
                         onClick={login}
                       >
                         Login
                       </button>
-                    </form>
+                    </div>
                   </div>
                 </div>
 

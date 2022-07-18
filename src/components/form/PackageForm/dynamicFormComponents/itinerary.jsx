@@ -39,10 +39,12 @@ const Itinerary = ({
               <div className="col-lg-6 wow ">
                 <div className="form-group m-2">
                   <div className="form-label">Heading</div>
+                  <label>Format - Day "{"daynumber"}" : Activity </label>
                   <input
                     required
                     type="text"
                     name="heading"
+                    placeholder="Day 1 : Road trip to destination"
                     className="form-control"
                     value={heading}
                     onChange={(event) => handleChangeInput(id, event)}

@@ -3,7 +3,7 @@ const Details = ({inclusives, exclusives, location}) => {
     <div>
       <h5 className="details-header center">Details</h5>
       <div className="underline"></div>
-      <div className="depature">
+      {location && <div className="depature">
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
           <div className="col-lg-6 wow " data-aos="fade-down-left">
             <div className="box-width-lg-470">
@@ -19,7 +19,7 @@ const Details = ({inclusives, exclusives, location}) => {
             </ul>
           </div>
         </div>
-      </div>
+      </div>}
       <div className="underline"></div>
       <div className="inclusives">
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">

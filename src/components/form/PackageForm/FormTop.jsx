@@ -1,10 +1,11 @@
 import React from "react";
-
-const FormTop = ({ handleChange }) => {
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+const FormTop = ({ handleChange}) => {
   return (
     <>
       <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
-        <div className="col-lg-6 wow " data-aos="fade-down-left">
+      <div className="col-lg-6 wow " data-aos="fade-down-left">
           <div className="form-group m-2">
             <div className="form-label">Destination</div>
             <input
@@ -46,15 +47,27 @@ const FormTop = ({ handleChange }) => {
         </div>
         <div className="col-lg-6 wow " data-aos="fade-down-right">
           <div className="form-group m-2">
-            <div className="form-label">Maximum number of people</div>
-            <input
-              type="number"
-              name="people"
-              min={1}
-              className="form-control"
-              placeholder="Maximum number of people"
-              onChange={handleChange}
-            />
+            <div className="form-label">Number of people</div>
+            <InputGroup className="mb-3">
+              <InputGroup.Text>Minimum</InputGroup.Text>
+              <Form.Control
+              required
+                name="minPeople"
+                type="number"
+                min={0}
+                aria-label="First name"
+                onChange={handleChange}
+              />
+              <InputGroup.Text>maximum</InputGroup.Text>
+              <Form.Control
+              required
+                name="maxPeople"
+                type="number"
+                min={1}
+                aria-label="Last name"
+                onChange={handleChange}
+              />
+            </InputGroup>
           </div>
         </div>
       </div>
@@ -62,15 +75,32 @@ const FormTop = ({ handleChange }) => {
         <div className="col-lg-6 wow ">
           <div className="form-group m-2">
             <div className="form-label">Price</div>
-            <input
-              required
-              type="number"
-              name="price"
-              min={0}
-              className="form-control"
-              placeholder="Price of package"
-              onChange={handleChange}
-            />
+            <InputGroup className="mb-3">
+              <select
+                id=""
+                name="currency"
+                className="form-select"
+                required
+                onChange={handleChange}
+              >
+                <option>Select the currency</option>
+                <option value="KSH" onChange={handleChange}>
+                  KSH
+                </option>
+                <option value="USD" onChange={handleChange}>
+                  USD
+                </option>
+              </select>
+              <input
+                className="form-control"
+                required
+                aria-label="Text input with dropdown button"
+                type="number"
+                name="price"
+                min={0}
+                onChange={handleChange}
+              />
+            </InputGroup>
           </div>
         </div>
         <div className="col-lg-6 wow ">

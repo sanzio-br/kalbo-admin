@@ -6,6 +6,28 @@
 a{
     text-decoration: none;
 }
+body{
+  -webkit-user-select: none !important;
+-khtml-user-select: none !important;
+-moz-user-select: none !important;
+-ms-user-select: none !important;
+-o-user-select: none !important;
+user-select: none !important;
+}
+.headers{
+  text-align: center;
+  color:var(--red);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem) !important;
+  margin: 1em auto;
+}
+.headers::after{
+  display: block;
+  content: '';
+  margin: auto;
+  width: 20%;
+  height: 2px;
+  background-color: var(--red);
+}
 .bookbtn{
     display: flex;
     border: none;
@@ -16,6 +38,9 @@ a{
     margin-top: .5em ;
     width: fit-content;
     align-self: flex-end;
+  }
+  .bookbtn > span{
+    margin-right: .5em;
   }
   .delete-btn{
     font-size: 2em;

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getEvents, Open, Close } from "../../redux/features/eventsfeature";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { WiDaySunny } from "react-icons/wi";
-import { BsPeopleFill } from "react-icons/bs";
+import { BsPeopleFill , BsFillPersonFill} from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Button from "../../components/button";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -25,14 +25,7 @@ export default function Events() {
   };
   return (
     <section style={{ textAlign: "center" }} className="container mt-0">
-      <h3
-        style={{
-          color: "var(--red)",
-          margin: "5px auto",
-        }}
-      >
-        Available Tours
-      </h3>
+      <h1 className="h-2 headers">All available  packages</h1>
       <div className="container mt-3">
         <div className="row clearfix">
           {events.map(({ title, packageData, id, url}) => {
@@ -52,16 +45,28 @@ export default function Events() {
                       </small>
                     </div>
                     <div className="pw_meta">
+                    {packageData ? packageData.startDate && packageData.endDate ? (
+                    <>
                       <span>
                         <AiOutlineCalendar className="card-icon" />
-                        {packageData ? `${packageData.startDate} to ${packageData.endDate}`: "N/A"}
+                        {packageData
+                          ? `${packageData.startDate} to ${packageData.endDate}`
+                          : ""}
                       </span>
-                      <span>
-                        <WiDaySunny className="card-icon" />
-                        {packageData ? packageData.days : ""} 
-                        <BsPeopleFill className="card-icon" />
-                        {packageData ? packageData.people : ""}
-                      </span>
+                    </>
+                  ) : (
+                    ""
+                  ):""}
+                    <span>
+                    <WiDaySunny className="card-icon" />
+                    {packageData ? packageData.days : ""}
+                  </span>
+                  <span>
+                    <BsFillPersonFill className="card-icon" />
+                    {packageData ? packageData.minPeople : ""}
+                    <BsPeopleFill className="card-icon" />
+                    {packageData ? packageData.maxPeople : ""}
+                  </span>
                       <Link to={`/safari-packages/${id}`}>
                         <Button id={id} />
                       </Link>
