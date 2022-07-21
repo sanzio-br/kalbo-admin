@@ -16,11 +16,10 @@ export const International = () => {
         dispatch(getEvents())
     },[dispatch])
     const {events} = eventsListState;
-
-    const Selected = (events) => {
+    useEffect(()=>{
+      const Selected = (events) => {
         return events.packageData.packageType === "International packages"
     }
-    useEffect(()=>{
         setBeach(events.filter(Selected))
     },[])
   return (

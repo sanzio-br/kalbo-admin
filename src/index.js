@@ -14,6 +14,8 @@ import './css/blogs.css';
 import './css/cards.css';
 import './css/style.css';
 import './css/package.css';
+import './css/Editor.css';
+import './css/gallery.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 const root = ReactDOM.createRoot(document.getElementById('root'));

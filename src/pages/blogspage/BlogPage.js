@@ -10,7 +10,7 @@ import PostComment from "./comments";
 import logo from "../../imgs/logo.PNG";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Delete } from "./delete";
-function Blog() {
+function Blog({isAuth}) {
   const dispatch = useDispatch();
   const userListState = useSelector((store) => {
     return store["blogs"];
@@ -30,7 +30,7 @@ function Blog() {
       <div className="container">
         <div className="row align-items-start">
           <div className="col-lg-8 m-15px-tb">
-            {blogs.map(({ id, url, blog }) => {
+            {blogs.map(({ id, url, blog, state }) => {
               return (
                 <article
                   className="article"
@@ -53,9 +53,20 @@ function Blog() {
                     </div>
                   </div>
                   <div className="article-content">
-                    <p>{blog ? blog.blogPost : ""}</p>
+                    {state ? state.contentState.blocks.map(
+                      (block)=>{
+                        return(
+                          <div>
+                            {
+                              block.type==="ordered-list-item" ? 
+                              <ol>{block.text}</ol> : block.text
+                            }
+                          </div>
+                        )
+                      }
+                    ):""}
                   </div>
-                  <div className="delete">
+                  {isAuth && <div className="delete">
                     <button
                       className="delete-btn"
                       onClick={modalOpen}
@@ -68,7 +79,7 @@ function Blog() {
                       id={id}
                       title={blog ? blog.blogTitle : ""}
                     />
-                  </div>
+                  </div>}
                 </article>
               );
             })}

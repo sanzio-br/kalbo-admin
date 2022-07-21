@@ -16,6 +16,9 @@ import { International } from './pages/eventspage/packagetypes/International';
 import { Domestic } from './pages/eventspage/packagetypes/Domestic';
 import { HoneyMoon } from './pages/eventspage/packagetypes/HoneyMoon';
 import { Safari } from './pages/eventspage/packagetypes/Safari';
+import { Building } from './pages/eventspage/packagetypes/Building';
+import { Gallery } from './pages/gallery/Gallery';
+import GalleryUpload from './components/form/Gallery/GalleryUpload';
 function App() {
   AOS.init();
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -26,8 +29,8 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home isAuth={isAuth}/>}/>
         <Route exact path='/login' element={<Signing setIsAuth={setIsAuth}/>}/>
-        <Route exact path='/blogs' element={<BlogPage/>}/>
-        <Route exact path='/packages' element={<Events/>}/>
+        <Route exact path='/blogs' element={<BlogPage isAuth={isAuth}/>}/>
+        <Route exact path='/packages' element={<Events isAuth={isAuth}/>}/>
         <Route exact path='/post-package' element={<PostPackage isAuth={isAuth}/>}/>
         <Route exact path='/post-blog' element={<PostBlog isAuth={isAuth}/>}/>
         <Route exact path='/packages/:id' element={<BookingInfo/>}/>
@@ -36,6 +39,9 @@ function App() {
         <Route exact path='/domestic-packages' element={<Domestic/>}/>
         <Route exact path='/honeymoon-packages' element={<HoneyMoon/>}/>
         <Route exact path='/beach-packages' element={<Beach/>}/>
+        <Route exact path="/post-gallery" element={<GalleryUpload/>}/>
+        <Route exact path='/gallery' element={<Gallery/>}/>
+        <Route exact path='/team-building-packages' element={<Building/>}/>
       </Routes>
     </Router>
     </div>

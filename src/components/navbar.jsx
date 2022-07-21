@@ -102,7 +102,17 @@ const Navbar = ({ isAuth, setIsAuth }) => {
                       Beach packages
                     </a>
                   </li>
+                  <li>
+                    <a className="dropdown-item" href="/team-building-packages">
+                    Team building packages
+                    </a>
+                  </li>
                 </ul>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/gallery">
+                  Gallery
+                </a>
               </li>
               {isAuth ? (
                 <>
@@ -122,6 +132,15 @@ const Navbar = ({ isAuth, setIsAuth }) => {
                       href="/post-blog"
                     >
                       post blog
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/post-gallery"
+                    >
+                      post Gallery
                     </a>
                   </li>
                   <li className="nav-item">

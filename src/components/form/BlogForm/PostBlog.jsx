@@ -4,12 +4,19 @@ import { db, storage } from "../../../firebase-config";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { ProgressBar, Alert } from "react-bootstrap";
+import { Editor } from "react-draft-wysiwyg";
 const PostBlog = ({ isAuth }) => {
+  const [state, setState] = useState({
+    contentState: {},
+  });
+  const onContentStateChange = (contentState) => {
+    setState({ contentState });
+  };
+  const { contentState } = state.contentState;
   const [photo, setPhoto] = useState(null);
   const [progress, setProgress] = useState();
   const [blog, setBlog] = useState({
     blogTitle: "",
-    blogPost: "",
   });
   const postsCollectionRef = collection(db, "posts");
   let navigate = useNavigate();
@@ -19,7 +26,7 @@ const PostBlog = ({ isAuth }) => {
     }
   });
   const handleChange = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const value = event.target.value;
     setBlog({ ...blog, [event.target.name]: value });
   };
@@ -38,7 +45,6 @@ const PostBlog = ({ isAuth }) => {
           const progressValue =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progressValue);
-          console.log("Upload is " + progressValue + "% done");
         },
         (error) => {
           console.log(error);
@@ -46,9 +52,9 @@ const PostBlog = ({ isAuth }) => {
         () => {
           // complete function ....
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
             function postevent() {
               addDoc(postsCollectionRef, {
+                state,
                 blog,
                 url: downloadURL,
               });
@@ -80,15 +86,14 @@ const PostBlog = ({ isAuth }) => {
           </div>
         </div>
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
-          <div className="form-group m-2">
-            <label className="form-label">Blog post</label>
-            <textarea
-              required
-              name="blogPost"
-              cols="30"
-              rows="10"
-              className="form-group"
-              onChange={handleChange}
+          <div className="form-group">
+            <label className="form-label">Blog</label>
+            <Editor
+              initialContentState={contentState}
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperEditor"
+              editorClassName="editorClassName"
+              onContentStateChange={onContentStateChange}
             />
           </div>
         </div>

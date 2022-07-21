@@ -3,7 +3,6 @@ import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { v4 as uuidv4 } from "uuid";
-import Itinerary from "./dynamicFormComponents/itinerary";
 import Inclusive from "./dynamicFormComponents/Inclusive";
 import Exclusive from "./dynamicFormComponents/Exclusive";
 import PackagePhotos from "./filesUpload/PackagePhotos";
@@ -14,6 +13,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../../firebase-config";
 import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { Editor } from "react-draft-wysiwyg";
 const PostPackage = ({ isAuth }) => {
   const postsCollectionRef = collection(db, "events");
   let navigate = useNavigate();
@@ -22,9 +22,16 @@ const PostPackage = ({ isAuth }) => {
       navigate("/login");
     }
   });
-  const [itinerary, setItinerary] = useState([
-    { id: uuidv4(), heading: "", description: "" },
-  ]);
+  const [state, setState] = useState({
+    contentState: {},
+  });
+  const onContentStateChange = (contentState) => {
+    setState({ contentState });
+  };
+  const { contentState } = state.contentState;
+  // const [itinerary, setItinerary] = useState([
+  //   { id: uuidv4(), heading: "", contentState: {} },
+  // ]);
   const [inclusives, setInclusives] = useState([
     { id: uuidv4(), listItem: "" },
   ]);
@@ -78,12 +85,12 @@ const PostPackage = ({ isAuth }) => {
               addDoc(postsCollectionRef, {
                 packageData,
                 title: `${packageData.days} Days to ${packageData.destination}`,
-                itinerary: itinerary,
+                itinerary: state,
                 inclusives: inclusives,
                 exclusives: exclusives,
                 url: downloadURL,
               });
-              navigate("/safari-packages");
+              navigate("/packages");
             }
             postevent();
           });
@@ -106,7 +113,8 @@ const PostPackage = ({ isAuth }) => {
               <option value="International package" >International package</option>
               <option value="Beach packages" >Beach packages</option>
               <option value="Safari Packages">Safari Packages</option>
-              <option value="honey moon packages">honey moon packages</option>
+              <option value="Honey moon packages">Honey moon packages</option>
+              <option value="Team building packages">Team building packages</option>
             </select>
           </div>
         </div>
@@ -141,7 +149,19 @@ const PostPackage = ({ isAuth }) => {
           <div className="col-lg-6 wow "></div>
           <div className="col-lg-6 wow "></div>
         </div>
-        <h5>Itinerary</h5>
+        <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
+          <div className="form-group">
+            <label className="form-label">Itinerary</label>
+            <Editor
+              initialContentState={contentState}
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperEditor"
+              editorClassName="editorClassName"
+              onContentStateChange={onContentStateChange}
+            />
+          </div>
+        </div>
+        {/* <h5>Itinerary</h5>
         <Itinerary
           itinerary={itinerary}
           setItinerary={setItinerary}
@@ -149,9 +169,10 @@ const PostPackage = ({ isAuth }) => {
           IconButton={IconButton}
           RemoveIcon={RemoveIcon}
           AddIcon={AddIcon}
-        />
-        <h5>inclusives and exclusives</h5>
+        /> */}
+        
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
+        <h5>inclusives and exclusives</h5>
           <div className="col-lg-6 wow ">
             <div className="inclusives">
               <span>Inclusives</span>
