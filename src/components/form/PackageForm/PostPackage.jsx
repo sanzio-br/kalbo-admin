@@ -152,6 +152,7 @@ const PostPackage = ({ isAuth }) => {
         <div className="row row-50 align-items-center justify-content-center justify-content-xl-between">
           <div className="form-group">
             <label className="form-label">Itinerary</label>
+            <small>Underline the headings for better look</small>
             <Editor
               initialContentState={contentState}
               toolbarClassName="toolbarClassName"
