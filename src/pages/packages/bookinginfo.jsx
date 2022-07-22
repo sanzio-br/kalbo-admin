@@ -21,7 +21,7 @@ export default function BookingInfo(props) {
   useEffect(() => {
     dispatch(getEvents());
   }, [dispatch]);
-  const { loading, events, errorMessage } = eventsListState;
+  const { events } = eventsListState;
   useEffect(() => {
     for (var i = 0; i < events.length; i++) {
       var post = events[i];
