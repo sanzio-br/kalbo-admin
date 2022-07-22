@@ -22,11 +22,9 @@ export default function BookingInfo(props) {
     dispatch(getEvents());
   }, [dispatch]);
   const { loading, events, errorMessage } = eventsListState;
-  console.log(loading, events, errorMessage);
   useEffect(() => {
     for (var i = 0; i < events.length; i++) {
       var post = events[i];
-      console.log(post);
       if (post.id === id) {
         setPostContent(post);
       }
