@@ -37,7 +37,7 @@ export default function Events({ isAuth }) {
                   </div>
                   <div className="pw_content">
                     <div className="pw_header">
-                      <Link to={`/safari-packages/${id}`}>
+                      <Link to={`/packages/${id}`}>
                         <h6>{title}</h6>
                       </Link>
                       <small className="text-muted">
@@ -71,7 +71,7 @@ export default function Events({ isAuth }) {
                         <BsPeopleFill className="card-icon" />
                         {packageData ? packageData.maxPeople : ""}
                       </span>
-                      <Link to={`/safari-packages/${id}`}>
+                      <Link to={`/packages/${id}`}>
                         <Button id={id} />
                       </Link>
                     </div>
